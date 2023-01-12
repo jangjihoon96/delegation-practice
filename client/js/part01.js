@@ -27,6 +27,7 @@ const data = [
 
 
 const navigation = getNode('.navigation');
+const visualImg = getNode('.visual img')
 // const list = getNodes('.navigation > li');
 
 function makeArray(arrayLike){
@@ -35,15 +36,24 @@ function makeArray(arrayLike){
 
 const handler = (e) => {
   let target = e.target.closest('li')
-  let list = makeArray(navigation.children);
-
   // 타겟이 아닌 다른걸 눌렀을때는 함수가 return 되도록
   if(!target) return
+  
+  let list = makeArray(navigation.children);
+  let index = attr(target,'data-index');
+
   
   // Array.from 을 사용하여 진짜 배열로 변환, 그래야 forEach문 사용가능
   list.forEach(item => removeClass(item,'is-active'));
   
+
+  // attr(visualImg,'src',`./assets/part01/visual${index}.jpg`)
+  attr(visualImg,'src',`./assets/part01/${data[index-1].src}`);
+  attr(visualImg,'alt',data[index-1].alt)
+
+
   addClass(target,'is-active');
+  
 }
 
 navigation.addEventListener('click', handler)
