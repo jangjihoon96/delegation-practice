@@ -24,6 +24,47 @@ const data = [
 ]
 
 
+// const list = $('.navigation > li');
+
+// $('.navigation > li').click(function(e){
+//   e.preventDefault();
+
+//   let index = $(this).index();
+
+//   $('.navigation > li').removeClass('is-active');
+
+//   $(this).addClass('is-active');
+
+//   $('.visual img').attr({
+//     'src':`./assets/part01/${data[index].src}`,
+//     'alt':`${data[index].alt}`
+//   });
+// });
+
+
+
+
+// 이벤트 위임 방식
+$('.navigation').on('click', 'li', function(e){
+
+  e.preventDefault();
+
+  // let index = $(this).index();
+  let index = $(this).attr('data-index');
+
+  $('.navigation > li').removeClass('is-active');
+  $(this).addClass('is-active');
+
+  $('.visual img').attr({
+    'src':`./assets/part01/${data[index-1].src}`,
+    'alt':`${data[index-1].alt}`
+  })
+
+});
+
+
+
+
 
 
 
